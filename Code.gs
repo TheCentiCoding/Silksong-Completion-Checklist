@@ -1,6 +1,11 @@
-function myFunction() {
+//
+// [!] ===== Main Checklist ===== [!]
+// The checklist for 100% completion.
+//
+function MainCheck() {
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = spreadsheet.getActiveSheet();
+  var completion = 0;
 
   // Register every checkbox (is there any better way to do this lmao)
   let farsight = [
@@ -31,7 +36,6 @@ function myFunction() {
     // Everbloom
     "M53"
   ];
-  var completion = 0;
   
   // Calculate Completion
   for (let i = 0; i<farsight.length; i++) {
@@ -47,14 +51,88 @@ function myFunction() {
     completion = 0;
   }
 
+  // Show Completion
   sheet.getRange("D2").setValue(completion+"%");
+}
+
+//
+// [!] ===== Wishes Checklist ===== [!]
+// The checklist to keep track of wishes.
+//
+function Wishes() {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = spreadsheet.getActiveSheet();
+  var completion = 0;
+  var goal = 0;
+
+  // Register every wish
+  let wishwall = [
+    // Wayfarer Wishes
+    "D4", "D5", "D6", "D7", "D8", "D9", "D10", "D11", "D12", "D13", "D14", "D15", "D16", "D17", "D18", "D19",
+    // Gather Wishes
+    "G4", "G5", "G6", "G7", "G8", "G9",
+    // Hunt Wishes
+    "J4", "J5", "J6", "J7", "J8", "J9", "J10", "J11", "J12", "J13", "J14",
+    // Grand Hunt Wishes
+    "M4", "M5", "M6", "M7",
+    // Donation Wishes
+    "G11", "G12", "G13", "G14", "G15", "G16", "G17",
+    // Delivery Wishes
+    "M9", "M10", "M11", "M12", "M13", "M14", "M15",
+    // Unique Wishes
+    "J14", "J15", "J16",
+    // Steel Soul Exclusive
+    "M17"
+  ];
+
+  // Clear All
+  if (sheet.getRange("F2").getValue() === true) {
+    for (let i = 0; i<wishwall.length; i++) {
+      sheet.getRange(wishwall[i]).setValue(false);
+    }
+    sheet.getRange("F2").setValue(false);
+    completion = 0;
+  }
+
+  // Calculate Completion
+  for (let i = 0; i<wishwall.length; i++) {
+    if (sheet.getRange(wishwall[i]).getValue() === true) completion++;
+    goal++;
+  }
+
+  // Exclude Steel Soul Exclusive
+  if (sheet.getRange("M17").getValue() === false) goal = goal - 1;
+
+  // Show Completion
+  sheet.getRange("D2").setValue(completion+" / "+goal);
+
+  // Show Act 3 Requirements
+  let requirement = ["B8", "B13", "H5", "H7", "E11", "E12", "E13", "E15", "E16", "E17"];
+  let requirementcheckbox = ["D8", "D13", "J5", "J7", "G11", "G12", "G13", "G15", "G16", "G17"];
+  if (sheet.getRange("J2").getValue() === true) {
+    for (let i = 0; i<requirement.length; i++) {
+      sheet.getRange(requirement[i]).setBackground("#ffe599");
+      sheet.getRange(requirementcheckbox[i]).setBackground("#fff2cc");
+    }
+  } else {
+    for (let i = 0; i<requirement.length; i++) {
+      sheet.getRange(requirement[i]).setBackground("#a0c5e8");
+      sheet.getRange(requirementcheckbox[i]).setBackground("#cfe2f3");
+    }
+    
+  }
+
 }
 
 // Update sheet automatically
 function onEdit(e) {
   var sheet = e.source.getActiveSheet();
   
-  if (sheet.getName() === 'Sheet1'){
-    myFunction();
+  if (sheet.getName() === 'Main Checklist'){
+    MainCheck();
+  }
+
+  if (sheet.getName() === 'Wishes'){
+    Wishes();
   }
 }
