@@ -3,6 +3,8 @@ A checklist for a 100% walkthrough in Hollow Knight: Silksong made in Google She
 
 One of the biggest problems in Silksong is keeping track of what you did. So, I made this quick checklist in Google Sheets to keep track on everything.
 
+Includes Wishes, Memory Lockets, Void Masses, and other stuffs.
+
 ## How to use
 1. Open the [Silksong Checklist](https://docs.google.com/spreadsheets/d/1xxiYxq_7dUgdJXXlLF-7na2fh2xzDHrvYvvWrr1ixVo/edit?usp=sharing).
 2. Go to File > Make a copy.
