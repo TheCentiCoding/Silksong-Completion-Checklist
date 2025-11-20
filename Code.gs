@@ -124,6 +124,111 @@ function Wishes() {
 
 }
 
+//
+// [!] ===== Memory Lockets Checklist ===== [!]
+// The checklist to keep track of memory lockets.
+//
+function Lockets() {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = spreadsheet.getActiveSheet();
+  var completion = 0;
+
+  // Register every memory locket
+  let memories = ["M4","M5","M6","M7","M8","M9","M10","M11","M12","M13","M14","M15","M16","M17","M18","M19","M20","M21","M22","M23"];
+
+  // Clear All
+  if (sheet.getRange("E2").getValue() === true) {
+    for (let i = 0; i<memories.length; i++) {
+      sheet.getRange(memories[i]).setValue(false);
+    }
+    sheet.getRange("E2").setValue(false);
+    completion = 0;
+  }
+
+  // Calculate Completion
+  for (let i = 0; i<memories.length; i++) {
+    if (sheet.getRange(memories[i]).getValue() === true) completion++;
+  }
+
+  // Show Completion
+  sheet.getRange("C2").setValue(completion+" / 20");
+
+  // Act 3
+  if (sheet.getRange("L3").getValue() === true) {
+    sheet.getRange("B5").setValue("Blasted Steps");
+    sheet.getRange("D5").setValue("Purchased from Grindle for 250 rosaries.");
+    sheet.getRange("B7").setValue("The Marrow");
+    sheet.getRange("D7").setValue("Found in Survivor's Camp laying on the ground next to Flick the Fixer.");
+  } else {
+    sheet.getRange("B5").setValue("Far Fields");
+    sheet.getRange("D5").setValue("Purchased from Mort for 150 rosaries.");
+    sheet.getRange("B7").setValue("Bone Bottom");
+    sheet.getRange("D7").setValue("Awarded after completing the Volatile Flintbeetles Wish. Reach Greymoor first.");
+  }
+
+}
+
+//
+// [!] ===== Void Masses Checklist ===== [!]
+// The checklist to keep track of void masses because I'm bored
+//
+function Masses() {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = spreadsheet.getActiveSheet();
+  var completion = 0;
+
+  // Register every void mass
+  let voidmass = ["M4","M5","M6","M7","M8","M9","M10","M11","M12","M13","M14","M15","M16","M17","M18","M19","M20","M21","M22","M23","M24","M25","M26","M27","M28","M29","M30","M31","M32","M33","M34","M35","M36","M37","M38","M39","M40","M41","M42","M43","M44","M45","M46","M47","M48","M49"];
+
+  // Clear All
+  if (sheet.getRange("E2").getValue() === true) {
+    for (let i = 0; i<voidmass.length; i++) {
+      sheet.getRange(voidmass[i]).setValue(false);
+    }
+    sheet.getRange("E2").setValue(false);
+    completion = 0;
+  }
+
+  // Calculate Completion
+  for (let i = 0; i<voidmass.length; i++) {
+    if (sheet.getRange(voidmass[i]).getValue() === true) completion++;
+  }
+
+  // Show Completion
+  sheet.getRange("C2").setValue(completion+" / 46");
+
+}
+
+//
+// [!] ===== Miscellaneous ===== [!]
+// Stuffs that do not count toward 100% completion, but still easy to lose track with.
+// Some are may required toward the 100% completion, such as wishes and boss fights, to obtain certain tools or skills.
+//
+function Misc() {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = spreadsheet.getActiveSheet();
+
+  let checks = [
+    // Pale Oils
+    "I5", "I6", "I7",
+    // Mossberries
+    "G9", "G10", "G11", "G12", "G13", "G14", "G15",
+    // Pollip Hearts
+    "M9", "M10", "M11", "M12", "M13", "M14",
+    // Cogheart Pieces
+    "M5", "M6", "M7"
+    ];
+
+  // Clear All
+  if (sheet.getRange("C3").getValue() === true) {
+    for (let i = 0; i<checks.length; i++) {
+      sheet.getRange(checks[i]).setValue(false);
+    }
+    
+    sheet.getRange("C3").setValue(false);
+  }
+}
+
 // Update sheet automatically
 function onEdit(e) {
   var sheet = e.source.getActiveSheet();
@@ -134,5 +239,17 @@ function onEdit(e) {
 
   if (sheet.getName() === 'Wishes'){
     Wishes();
+  }
+
+  if (sheet.getName() === 'Memory Lockets'){
+    Lockets();
+  }
+
+  if (sheet.getName() === 'Void Masses'){
+    Masses();
+  }
+
+  if (sheet.getName() === 'Miscellaneous'){
+    Misc();
   }
 }
