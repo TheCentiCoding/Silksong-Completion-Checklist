@@ -218,7 +218,13 @@ function Misc() {
     // Pollip Hearts
     "M9", "M10", "M11", "M12", "M13", "M14",
     // Cogheart Pieces
-    "M5", "M6", "M7"
+    "M5", "M6", "M7",
+    // Psalm Cylinders
+    "G17", "G18", "G19", "G20", "G21", "G22",
+    // Craftmetals
+    "G24", "G25", "G26", "G27", "G28", "G29", "G30", "G31",
+    // Relics
+    "M17", "M18", "M19", "M20", "M22", "M23", "M24", "M26", "M27", "M28", "M29", "M31", "M32", "M33", "M35"
     ];
 
   // Clear All
