@@ -27,19 +27,25 @@ function MainCheck() {
     "D27","D28","D29",
     // Crests
     "G27","G28","G29","G30","G31","G32",
-    // Mask Shards
-    "G34","G35","G36","G37","G38","G39","G40","G41","G42","G43","G44","G45","G46","G47","G48","G49","G50","G51","G52","G53",
-    // Spool Fragments
-    "M34","M35","M36","M37","M38","M39","M40","M41","M42","M43","M44","M45","M46","M47","M48","M49","M50","M51",
     // Bind Eva
     "J53",
     // Everbloom
     "M53"
   ];
+
+  let maskshards = ["G34","G35","G36","G37","G38","G39","G40","G41","G42","G43","G44","G45","G46","G47","G48","G49","G50","G51","G52","G53"]
+  let spoolfragments = ["M34","M35","M36","M37","M38","M39","M40","M41","M42","M43","M44","M45","M46","M47","M48","M49","M50","M51"]
   
   // Calculate Completion
   for (let i = 0; i<farsight.length; i++) {
     if (sheet.getRange(farsight[i]).getValue() === true) completion++;
+  }
+  for (let i = 0; i<maskshards.length;i++) {
+    if (sheet.getRange(maskshards[i]).getValue() === true) completion = completion + 0.25;
+  }
+
+  for (let i = 0; i<spoolfragments.length;i++) {
+    if (sheet.getRange(spoolfragments[i]).getValue() === true) completion = completion + 0.5;
   }
 
   // Clear All
