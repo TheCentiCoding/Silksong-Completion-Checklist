@@ -53,6 +53,12 @@ function MainCheck() {
     for (let i = 0; i<farsight.length; i++) {
       sheet.getRange(farsight[i]).setValue(false);
     }
+    for (let i = 0; i<maskshards.length; i++) {
+      sheet.getRange(maskshards[i]).setValue(false);
+    }
+    for (let i = 0; i<spoolfragments.length; i++) {
+      sheet.getRange(spoolfragments[i]).setValue(false);
+    }
     sheet.getRange("F2").setValue(false);
     completion = 0;
   }
